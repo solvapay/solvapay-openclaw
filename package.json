@@ -1,0 +1,44 @@
+{
+  "name": "@solvapay/solvapay",
+  "version": "1.0.0",
+  "description": "SolvaPay plugin for OpenClaw — payment management tools via MCP",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "tsc --noEmit",
+    "test": "vitest run",
+    "test:unit": "vitest run --exclude '**/e2e.test.ts'",
+    "test:e2e": "vitest run src/__tests__/e2e.test.ts",
+    "test:watch": "vitest"
+  },
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0"
+  },
+  "devDependencies": {
+    "@sinclair/typebox": "^0.34.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.2.4"
+  },
+  "files": [
+    "dist",
+    "openclaw.plugin.json",
+    "skills",
+    "README.md"
+  ],
+  "keywords": [
+    "openclaw",
+    "solvapay",
+    "mcp",
+    "payments",
+    "ai-agent"
+  ],
+  "license": "MIT"
+}
