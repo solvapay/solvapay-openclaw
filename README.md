@@ -9,7 +9,7 @@ The plugin connects to the hosted SolvaPay MCP server, discovers all available t
 ## Prerequisites
 
 - An OpenClaw gateway (v2.4+)
-- A SolvaPay account — [sign up at solvapay.com/sign-up](https://solvapay.com/sign-up), then grab your API key from the dashboard under **Developers > Secret Keys**
+- A SolvaPay account — [sign up at solvapay.com/sign-up](https://app.solvapay.com/sign-up), then grab your API key from the dashboard under **Developers > Secret Keys**
 - To process real payments, you must verify your account with our payment processor (Stripe) via the dashboard. Sandbox mode works immediately without verification.
 
 ## Quick start (vibe prompt)

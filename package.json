@@ -8,10 +8,10 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "lint": "tsc --noEmit",
-    "test": "vitest run",
-    "test:unit": "vitest run --exclude '**/e2e.test.ts'",
-    "test:e2e": "vitest run src/__tests__/e2e.test.ts",
-    "test:watch": "vitest"
+    "test": "jest",
+    "test:unit": "jest --testPathIgnorePatterns='e2e'",
+    "test:e2e": "jest --testPathPattern='e2e'",
+    "test:watch": "jest --watch"
   },
   "openclaw": {
     "extensions": [
@@ -23,9 +23,11 @@
   },
   "devDependencies": {
     "@sinclair/typebox": "^0.34.0",
+    "@types/jest": "^29.5.14",
     "@types/node": "^22.0.0",
-    "typescript": "^5.7.0",
-    "vitest": "^3.2.4"
+    "jest": "^29.7.0",
+    "ts-jest": "^29.4.6",
+    "typescript": "^5.7.0"
   },
   "files": [
     "dist",

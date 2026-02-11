@@ -1,5 +1,4 @@
-import { describe, it, expect, afterAll } from 'vitest'
-import { McpBridge } from '../mcp-bridge.js'
+import { McpBridge } from '../mcp-bridge'
 
 /**
  * End-to-end tests against the real SolvaPay MCP server (sandbox).
@@ -14,7 +13,9 @@ const ENDPOINT = 'https://mcp.solvapay.com/mcp'
 const API_KEY = process.env.SOLVAPAY_TEST_API_KEY
 const HAS_KEY = !!API_KEY
 
-describe.skipIf(!HAS_KEY)('E2E: McpBridge against live sandbox', () => {
+const describeE2E = HAS_KEY ? describe : describe.skip
+
+describeE2E('E2E: McpBridge against live sandbox', () => {
   const bridge = new McpBridge({
     endpoint: ENDPOINT,
     apiKey: API_KEY!,
@@ -77,7 +78,7 @@ describe.skipIf(!HAS_KEY)('E2E: McpBridge against live sandbox', () => {
   })
 })
 
-describe.skipIf(!HAS_KEY)('E2E: invalid API key', () => {
+describeE2E('E2E: invalid API key', () => {
   it('rejects with an error when using an invalid key', async () => {
     const badBridge = new McpBridge({
       endpoint: ENDPOINT,

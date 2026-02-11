@@ -1,25 +1,21 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import register from '../index'
+import { McpBridge } from '../mcp-bridge'
 
 // ── Mocks ───────────────────────────────────────────────────────────
 
-const mockConnect = vi.fn()
-const mockListTools = vi.fn()
-const mockCallTool = vi.fn()
-const mockClose = vi.fn()
+const mockConnect = jest.fn()
+const mockListTools = jest.fn()
+const mockCallTool = jest.fn()
+const mockClose = jest.fn()
 
-vi.mock('../mcp-bridge.js', () => ({
-  McpBridge: vi.fn().mockImplementation(() => ({
+jest.mock('../mcp-bridge', () => ({
+  McpBridge: jest.fn().mockImplementation(() => ({
     connect: mockConnect,
     listTools: mockListTools,
     callTool: mockCallTool,
     close: mockClose,
   })),
 }))
-
-const { McpBridge } = await import('../mcp-bridge.js')
-
-// Import the default export (register function)
-const { default: register } = await import('../index.js')
 
 // ── Helpers ─────────────────────────────────────────────────────────
 
@@ -39,12 +35,12 @@ function createMockApi(configOverrides: Record<string, unknown> = {}) {
       },
     },
     logger: {
-      info: vi.fn(),
-      warn: vi.fn(),
-      error: vi.fn(),
+      info: jest.fn(),
+      warn: jest.fn(),
+      error: jest.fn(),
     },
-    registerTool: vi.fn(),
-    registerService: vi.fn(),
+    registerTool: jest.fn(),
+    registerService: jest.fn(),
   }
 }
 
@@ -64,7 +60,7 @@ describe('register() — plugin entry point', () => {
   const savedEnv: Record<string, string | undefined> = {}
 
   beforeEach(() => {
-    vi.clearAllMocks()
+    jest.clearAllMocks()
     // Save and clear relevant env vars
     savedEnv.SOLVAPAY_API_KEY = process.env.SOLVAPAY_API_KEY
     savedEnv.SOLVAPAY_MCP_ENDPOINT = process.env.SOLVAPAY_MCP_ENDPOINT
@@ -239,7 +235,6 @@ describe('register() — plugin entry point', () => {
       register(api)
 
       const service = getRegisteredService(api)
-      // stop without start
       await service.stop()
 
       expect(mockClose).not.toHaveBeenCalled()

@@ -1,33 +1,28 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { McpBridge } from '../mcp-bridge.js'
+import { McpBridge } from '../mcp-bridge'
+import { Client } from '@modelcontextprotocol/sdk/client/index.js'
+import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js'
 
 // ── Mocks ───────────────────────────────────────────────────────────
-// We mock the two SDK imports so no real network calls are made.
+// jest.mock is hoisted above imports, so the mocked versions are used.
 
-const mockConnect = vi.fn()
-const mockListTools = vi.fn()
-const mockCallTool = vi.fn()
-const mockTransportClose = vi.fn()
+const mockConnect = jest.fn()
+const mockListTools = jest.fn()
+const mockCallTool = jest.fn()
+const mockTransportClose = jest.fn()
 
-vi.mock('@modelcontextprotocol/sdk/client/index.js', () => ({
-  Client: vi.fn().mockImplementation(() => ({
+jest.mock('@modelcontextprotocol/sdk/client/index.js', () => ({
+  Client: jest.fn().mockImplementation(() => ({
     connect: mockConnect,
     listTools: mockListTools,
     callTool: mockCallTool,
   })),
 }))
 
-vi.mock('@modelcontextprotocol/sdk/client/streamableHttp.js', () => ({
-  StreamableHTTPClientTransport: vi.fn().mockImplementation(() => ({
+jest.mock('@modelcontextprotocol/sdk/client/streamableHttp.js', () => ({
+  StreamableHTTPClientTransport: jest.fn().mockImplementation(() => ({
     close: mockTransportClose,
   })),
 }))
-
-// Re-import the mocked classes so we can inspect constructor calls
-const { Client } = await import('@modelcontextprotocol/sdk/client/index.js')
-const { StreamableHTTPClientTransport } = await import(
-  '@modelcontextprotocol/sdk/client/streamableHttp.js'
-)
 
 // ── Tests ───────────────────────────────────────────────────────────
 
@@ -38,15 +33,13 @@ describe('McpBridge', () => {
   }
 
   beforeEach(() => {
-    vi.clearAllMocks()
+    jest.clearAllMocks()
   })
 
   // ── constructor ─────────────────────────────────────────────────
 
   it('stores endpoint and apiKey from options', () => {
     const bridge = new McpBridge(opts)
-    // The bridge exposes nothing publicly, but we can verify
-    // connect() later uses the correct values.
     expect(bridge).toBeDefined()
   })
 
@@ -78,7 +71,8 @@ describe('McpBridge', () => {
     )
 
     // Verify the URL value
-    const urlArg = vi.mocked(StreamableHTTPClientTransport).mock.calls[0][0] as URL
+    const MockedTransport = jest.mocked(StreamableHTTPClientTransport)
+    const urlArg = MockedTransport.mock.calls[0][0] as URL
     expect(urlArg.toString()).toBe(opts.endpoint)
   })
 
@@ -210,7 +204,6 @@ describe('McpBridge', () => {
 
   it('is safe to call when not connected (no-op)', async () => {
     const bridge = new McpBridge(opts)
-    // Should not throw
     await bridge.close()
 
     expect(mockTransportClose).not.toHaveBeenCalled()
