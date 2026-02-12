@@ -171,7 +171,7 @@ The plugin dynamically discovers all tools from the MCP server. As of v1.0, this
 | Agents | 5 | create, get, list, update, delete |
 | Plans | 6 | create, get, list, update, delete, list_for_agent |
 | Subscriptions | 5 | list, get, by_customer, by_agent, cancel |
-| Payments | 7 | checkout, payment intents, process, portal |
+| Payments | 3 | checkout, check limits, portal |
 | Wallet | 3 | balance, agent_balance, stats |
 | Usage | 2 | record, bulk_record |
 | Transactions | 4 | list, get, stats, refund |

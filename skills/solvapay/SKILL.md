@@ -14,7 +14,7 @@ You have access to SolvaPay payment tools (prefixed `solvapay_`). Use them to ma
 - `solvapay_create_customer` — Create a customer (requires email)
 - `solvapay_get_customer` — Get by reference
 - `solvapay_list_customers` — List/search with pagination
-- `solvapay_update_customer` — Update name, email, phone, metadata
+- `solvapay_update_customer` — Update name, email, telephone, metadata
 - `solvapay_delete_customer` — Delete by reference
 - `solvapay_ensure_customer` — Idempotent create-or-get by email
 
@@ -43,10 +43,6 @@ You have access to SolvaPay payment tools (prefixed `solvapay_`). Use them to ma
 ### Payments & Checkout
 - `solvapay_check_limits` — Check usage limits for customer/agent pair
 - `solvapay_create_checkout_session` — Create a Stripe checkout session
-- `solvapay_create_payment_intent` — Create a payment intent
-- `solvapay_get_payment_intent` — Get by ID
-- `solvapay_list_payment_intents` — List with pagination
-- `solvapay_process_payment` — Process a payment intent
 - `solvapay_create_customer_session` — Create a customer portal session
 
 ### Wallet & Revenue
