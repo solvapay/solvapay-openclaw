@@ -1,6 +1,6 @@
 ---
 name: solvapay
-description: Payment management tools for SolvaPay — manage customers, agents, plans, subscriptions, payments, usage, and transactions.
+description: Payment management tools for SolvaPay — manage customers, products, plans, purchases, payments, usage, and transactions.
 metadata: {"openclaw":{"emoji":"💳","primaryEnv":"SOLVAPAY_API_KEY"}}
 ---
 
@@ -18,12 +18,12 @@ You have access to SolvaPay payment tools (prefixed `solvapay_`). Use them to ma
 - `solvapay_delete_customer` — Delete by reference
 - `solvapay_ensure_customer` — Idempotent create-or-get by email
 
-### Agents (AI agents / services)
-- `solvapay_create_agent` — Create an agent (requires name)
-- `solvapay_get_agent` — Get by reference
-- `solvapay_list_agents` — List/search agents
-- `solvapay_update_agent` — Update name, description, categories
-- `solvapay_delete_agent` — Delete by reference
+### Products
+- `solvapay_create_product` — Create a product (requires name)
+- `solvapay_get_product` — Get by reference
+- `solvapay_list_products` — List/search products
+- `solvapay_update_product` — Update name, description, categories
+- `solvapay_delete_product` — Delete by reference
 
 ### Plans (pricing)
 - `solvapay_create_plan` — Create a pricing plan (name, type, price)
@@ -31,23 +31,23 @@ You have access to SolvaPay payment tools (prefixed `solvapay_`). Use them to ma
 - `solvapay_list_plans` — List plans, filter by type/status
 - `solvapay_update_plan` — Update name, description, features, price
 - `solvapay_delete_plan` — Delete by reference
-- `solvapay_list_plans_for_agent` — List plans assigned to an agent
+- `solvapay_list_plans_for_product` — List plans assigned to a product
 
-### Subscriptions
-- `solvapay_list_subscriptions` — List all subscriptions
-- `solvapay_get_subscription` — Get by ID
-- `solvapay_get_subscriptions_by_customer` — By customer reference
-- `solvapay_get_subscriptions_by_agent` — By agent reference
-- `solvapay_cancel_subscription` — Cancel with optional reason
+### Purchases
+- `solvapay_list_purchases` — List all purchases
+- `solvapay_get_purchase` — Get by ID
+- `solvapay_get_purchases_by_customer` — By customer ID
+- `solvapay_get_purchases_by_product` — By product ID
+- `solvapay_cancel_renewal` — Cancel renewal with optional reason
+- `solvapay_check_limits` — Check usage limits for customer/product pair
 
 ### Payments & Checkout
-- `solvapay_check_limits` — Check usage limits for customer/agent pair
 - `solvapay_create_checkout_session` — Create a Stripe checkout session
 - `solvapay_create_customer_session` — Create a customer portal session
 
 ### Wallet & Revenue
 - `solvapay_get_wallet_balance` — Provider wallet balance
-- `solvapay_get_agent_balance` — Revenue for a specific agent
+- `solvapay_get_product_balance` — Revenue for a specific product
 - `solvapay_get_wallet_stats` — Wallet statistics
 
 ### Usage Tracking
@@ -74,7 +74,7 @@ You have access to SolvaPay payment tools (prefixed `solvapay_`). Use them to ma
 
 **Investigate a customer issue:**
 1. `solvapay_list_customers` to find them by search
-2. `solvapay_get_subscriptions_by_customer` to see their subscriptions
+2. `solvapay_get_purchases_by_customer` to see their purchases
 3. `solvapay_list_transactions` to review payment history
 4. `solvapay_create_refund` if a refund is needed
 

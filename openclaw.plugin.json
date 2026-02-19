@@ -1,7 +1,7 @@
 {
   "id": "solvapay",
   "name": "SolvaPay",
-  "description": "Payment management tools powered by the SolvaPay MCP server. Manage customers, agents, plans, subscriptions, payments, usage tracking, and transactions through chat.",
+  "description": "Payment management tools powered by the SolvaPay MCP server. Manage customers, products, plans, purchases, payments, usage tracking, and transactions through chat.",
   "version": "1.0.0",
   "configSchema": {
     "type": "object",

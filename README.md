@@ -4,7 +4,7 @@ OpenClaw plugin that connects the [SolvaPay](https://solvapay.com) MCP server to
 
 ## What it does
 
-The plugin connects to the hosted SolvaPay MCP server, discovers all available tools at startup, and registers them as native OpenClaw agent tools. Your AI can then manage customers, plans, subscriptions, payments, usage tracking, and transactions through natural conversation.
+The plugin connects to the hosted SolvaPay MCP server, discovers all available tools at startup, and registers them as native OpenClaw agent tools. Your AI can then manage customers, products, plans, purchases, payments, usage tracking, and transactions through natural conversation.
 
 ## Prerequisites
 
@@ -16,7 +16,7 @@ The plugin connects to the hosted SolvaPay MCP server, discovers all available t
 
 If you use Cursor, Claude Code, or another AI coding assistant with access to a terminal, paste this prompt to have it do the setup for you:
 
-> Install the @solvapay/solvapay OpenClaw plugin on my gateway. Run `openclaw plugins install @solvapay/solvapay`, then add the solvapay plugin to my ~/.openclaw/openclaw.json with `plugins.entries.solvapay.enabled: true` and `plugins.entries.solvapay.config.apiKey` set to my key (I'll provide it). Also add `"solvapay"` to `tools.allow`. Then restart the gateway with `openclaw gateway restart` and check the logs for "[SolvaPay] Discovered 38 tools".
+> Install the @solvapay/solvapay OpenClaw plugin on my gateway. Run `openclaw plugins install @solvapay/solvapay`, then add the solvapay plugin to my ~/.openclaw/openclaw.json with `plugins.entries.solvapay.enabled: true` and `plugins.entries.solvapay.config.apiKey` set to my key (I'll provide it). Also add `"solvapay"` to `tools.allow`. Then restart the gateway with `openclaw gateway restart` and check the logs for "[SolvaPay] Discovered 34 tools".
 
 Your assistant will walk you through each step and ask for your API key.
 
@@ -150,7 +150,7 @@ You should see:
 
 ```
 [SolvaPay] Connected to MCP server at https://mcp.solvapay.com/mcp
-[SolvaPay] Discovered 38 tools
+[SolvaPay] Discovered 34 tools
 ```
 
 ## Verify
@@ -163,16 +163,16 @@ The agent should call `solvapay_list_customers` and return the results.
 
 ## Available tools
 
-The plugin dynamically discovers all tools from the MCP server. As of v1.0, this includes 38 tools across 8 domains:
+The plugin dynamically discovers all tools from the MCP server. As of v1.0, this includes 34 tools across 8 domains:
 
 | Domain | Tools | Examples |
 |---|---|---|
 | Customers | 6 | create, get, list, update, delete, ensure |
-| Agents | 5 | create, get, list, update, delete |
-| Plans | 6 | create, get, list, update, delete, list_for_agent |
-| Subscriptions | 5 | list, get, by_customer, by_agent, cancel |
-| Payments | 3 | checkout, check limits, portal |
-| Wallet | 3 | balance, agent_balance, stats |
+| Products | 5 | create, get, list, update, delete |
+| Plans | 6 | create, get, list, update, delete, list_for_product |
+| Purchases | 6 | list, get, by_customer, by_product, cancel_renewal, check_limits |
+| Payments | 2 | checkout, portal |
+| Wallet | 3 | balance, product_balance, stats |
 | Usage | 2 | record, bulk_record |
 | Transactions | 4 | list, get, stats, refund |
 

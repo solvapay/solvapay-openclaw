@@ -62,7 +62,6 @@ export default function register(api: PluginApi) {
   const bridge = new McpBridge({ endpoint, apiKey })
   let connected = false
 
-  // Register as a background service for lifecycle management
   api.registerService({
     id: 'solvapay-mcp',
     start: async () => {
