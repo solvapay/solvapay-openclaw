@@ -163,7 +163,7 @@ describe('register() — plugin entry point', () => {
     it('connects bridge, discovers tools, and registers each one', async () => {
       mockListTools.mockResolvedValueOnce([
         { name: 'create_customer', description: 'Create a customer', inputSchema: { type: 'object' } },
-        { name: 'list_plans', description: 'List plans', inputSchema: { type: 'object' } },
+        { name: 'list_products', description: 'List products', inputSchema: { type: 'object' } },
       ])
 
       const api = createMockApi()

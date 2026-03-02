@@ -51,7 +51,7 @@ describeE2E('E2E: McpBridge against live sandbox', () => {
     const names = tools.map((t) => t.name)
 
     expect(names).toContain('create_customer')
-    expect(names).toContain('list_plans')
+    expect(names).toContain('list_products')
     expect(names).toContain('get_wallet_balance')
     expect(names).toContain('list_transactions')
     expect(names).toContain('record_usage')
@@ -71,8 +71,8 @@ describeE2E('E2E: McpBridge against live sandbox', () => {
     expect(result.length).toBeGreaterThan(0)
   })
 
-  it('callTool("list_plans", {}) returns a valid response', async () => {
-    const result = await bridge.callTool('list_plans', {})
+  it('callTool("list_products", {}) returns a valid response', async () => {
+    const result = await bridge.callTool('list_products', {})
     expect(typeof result).toBe('string')
     expect(result.length).toBeGreaterThan(0)
   })

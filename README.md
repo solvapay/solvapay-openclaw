@@ -4,7 +4,7 @@ OpenClaw plugin that connects the [SolvaPay](https://solvapay.com) MCP server to
 
 ## What it does
 
-The plugin connects to the hosted SolvaPay MCP server, discovers all available tools at startup, and registers them as native OpenClaw agent tools. Your AI can then manage customers, products, plans, purchases, payments, usage tracking, and transactions through natural conversation.
+The plugin connects to the hosted SolvaPay MCP server, discovers all available tools at startup, and registers them as native OpenClaw agent tools. Your AI can then manage customers, products (with embedded plans), purchases, payments, usage tracking, and transactions through natural conversation.
 
 ## Prerequisites
 
@@ -169,7 +169,7 @@ The plugin dynamically discovers all tools from the MCP server. As of v1.0, this
 |---|---|---|
 | Customers | 6 | create, get, list, update, delete, ensure |
 | Products | 5 | create, get, list, update, delete |
-| Plans | 6 | create, get, list, update, delete, list_for_product |
+| Plans | 6 | create, get, list, update, delete, list_for_product (plans are embedded within products) |
 | Purchases | 6 | list, get, by_customer, by_product, cancel_renewal, check_limits |
 | Payments | 2 | checkout, portal |
 | Wallet | 3 | balance, product_balance, stats |

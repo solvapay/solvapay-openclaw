@@ -99,7 +99,7 @@ describe('McpBridge', () => {
           inputSchema: { type: 'object', properties: { email: { type: 'string' } } },
         },
         {
-          name: 'list_plans',
+          name: 'list_products',
           description: undefined,
           inputSchema: { type: 'object', properties: {} },
         },
@@ -117,7 +117,7 @@ describe('McpBridge', () => {
         inputSchema: { type: 'object', properties: { email: { type: 'string' } } },
       },
       {
-        name: 'list_plans',
+        name: 'list_products',
         description: undefined,
         inputSchema: { type: 'object', properties: {} },
       },

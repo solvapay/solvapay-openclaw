@@ -8,7 +8,7 @@ const DEFAULT_ENDPOINT = 'https://mcp.solvapay.com/mcp'
  *
  * Connects to the hosted SolvaPay MCP server, discovers available
  * tools, and registers each one as an OpenClaw agent tool so the
- * AI can manage payments, customers, plans, and more through chat.
+ * AI can manage payments, customers, products, and more through chat.
  */
 
 // OpenClaw plugin API types (minimal, inferred from docs)

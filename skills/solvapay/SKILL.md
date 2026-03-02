@@ -1,6 +1,6 @@
 ---
 name: solvapay
-description: Payment management tools for SolvaPay — manage customers, products, plans, purchases, payments, usage, and transactions.
+description: Payment management tools for SolvaPay — manage customers, products (with embedded plans), purchases, payments, usage, and transactions.
 metadata: {"openclaw":{"emoji":"💳","primaryEnv":"SOLVAPAY_API_KEY"}}
 ---
 
@@ -25,13 +25,15 @@ You have access to SolvaPay payment tools (prefixed `solvapay_`). Use them to ma
 - `solvapay_update_product` — Update name, description, categories
 - `solvapay_delete_product` — Delete by reference
 
-### Plans (pricing)
-- `solvapay_create_plan` — Create a pricing plan (name, type, price)
-- `solvapay_get_plan` — Get by reference
+### Plans (pricing — embedded within products)
+- `solvapay_create_plan` — Create a pricing plan within a product (name, type, price, productRef)
+- `solvapay_get_plan` — Get plan by reference
 - `solvapay_list_plans` — List plans, filter by type/status
-- `solvapay_update_plan` — Update name, description, features, price
-- `solvapay_delete_plan` — Delete by reference
-- `solvapay_list_plans_for_product` — List plans assigned to a product
+- `solvapay_update_plan` — Update plan name, description, features, price
+- `solvapay_delete_plan` — Delete plan by reference
+- `solvapay_list_plans_for_product` — List plans for a specific product
+
+> Plans are now embedded subdocuments within products. Each plan belongs to exactly one product.
 
 ### Purchases
 - `solvapay_list_purchases` — List all purchases
@@ -64,7 +66,7 @@ You have access to SolvaPay payment tools (prefixed `solvapay_`). Use them to ma
 
 **Onboard a new customer:**
 1. `solvapay_ensure_customer` with their email
-2. `solvapay_list_plans` to show available plans
+2. `solvapay_list_plans_for_product` to show available plans for a product
 3. `solvapay_create_checkout_session` to generate a payment link
 
 **Check business health:**
